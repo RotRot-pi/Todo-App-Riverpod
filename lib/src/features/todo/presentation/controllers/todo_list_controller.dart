@@ -61,4 +61,12 @@ class TodoListController extends StateNotifier<AsyncValue<List<Todo>>> {
         .whenData((todos) => todos.where((todo) => todo.id != id).toList());
     await _todoService.deleteTodo(todoToDelete);
   }
+
+  Future<void> updateTodo(Todo updatedTodo) async {
+    state = state.whenData((todos) => [
+          for (final todo in todos)
+            if (todo.id == updatedTodo.id) updatedTodo else todo
+        ]);
+    await _todoService.updateTodo(updatedTodo);
+  }
 }
