@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:todo_riverpod/core/di.dart';
 import 'package:todo_riverpod/src/features/todo/presentation/widgets/todo_list_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await init();
   runApp(const ProviderScope(child: MyApp()));
 }
 
