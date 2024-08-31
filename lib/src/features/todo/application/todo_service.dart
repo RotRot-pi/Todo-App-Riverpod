@@ -21,4 +21,12 @@ class TodoService {
   Future<void> deleteTodo(Todo todo) {
     return _todoRepository.deleteTodo(todo);
   }
+
+  Future<Set<String>> getAvailableTags() {
+    return _todoRepository.getAvailableTags();
+  }
+
+  Future<void> saveAvailableTags(Set<String> tags) {
+    return _todoRepository.saveAvailableTags(tags);
+  }
 }

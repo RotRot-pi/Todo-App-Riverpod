@@ -7,10 +7,13 @@ class TodoDto {
   final String description;
   final bool isCompleted;
 
+  final List<String> tags;
+
   TodoDto({
     required this.id,
     required this.description,
     required this.isCompleted,
+    required this.tags,
   });
 
   factory TodoDto.fromDomain(Todo todo) {
@@ -18,6 +21,7 @@ class TodoDto {
       id: todo.id,
       description: todo.description,
       isCompleted: todo.isCompleted,
+      tags: todo.tags,
     );
   }
 
@@ -27,6 +31,7 @@ class TodoDto {
       id: map['id'] as String,
       description: map['description'] as String,
       isCompleted: map['isCompleted'] as bool,
+      tags: List<String>.from(map['tags'] as List? ?? []),
     );
   }
 
@@ -35,6 +40,7 @@ class TodoDto {
       id: id,
       description: description,
       isCompleted: isCompleted,
+      tags: tags,
     );
   }
 
@@ -43,6 +49,7 @@ class TodoDto {
       'id': id,
       'description': description,
       'isCompleted': isCompleted,
+      'tags': tags,
     };
   }
 }

@@ -7,6 +7,9 @@ abstract class TodoRepository {
   Future<void> addTodo(Todo todo);
   Future<void> updateTodo(Todo todo);
   Future<void> deleteTodo(Todo todo);
+
+  Future<Set<String>> getAvailableTags();
+  Future<void> saveAvailableTags(Set<String> tags);
 }
 
 class TodoRepositoryImpl implements TodoRepository {
@@ -42,5 +45,15 @@ class TodoRepositoryImpl implements TodoRepository {
     final todosDto = await _localStorageDatasource.getTodos();
     todosDto.removeWhere((dto) => dto.id == todo.id);
     await _localStorageDatasource.saveTodos(todosDto);
+  }
+
+  @override
+  Future<Set<String>> getAvailableTags() async {
+    return _localStorageDatasource.getAvailableTags();
+  }
+
+  @override
+  Future<void> saveAvailableTags(Set<String> tags) async {
+    return _localStorageDatasource.saveAvailableTags(tags);
   }
 }
